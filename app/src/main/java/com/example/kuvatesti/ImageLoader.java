@@ -11,14 +11,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ImageLoader {
 
-    public ArrayList<String> getAllShownImagesPath(Activity activity) {
+    public LinkedList<String> getAllShownImagesPath(Activity activity) {
         Uri uri;
         Cursor cursor;
         int column_index_data, column_index_folder_name;
-        ArrayList<String> listOfAllImages = new ArrayList<String>();
+        LinkedList<String> listOfAllImages = new LinkedList<String>();
         String absolutePathOfImage = null;
         uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 

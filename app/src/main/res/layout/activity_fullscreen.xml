@@ -14,31 +14,9 @@
 
     <ViewFlipper android:id="@+id/simpleFlipperi"
                  android:layout_width="match_parent"
-                 android:layout_height="match_parent">
-
-        <ImageView android:id="@+id/kuva1"
-                android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                  android:keepScreenOn="true"
-                  android:backgroundTint="@color/black_overlay"
-                  android:src="@drawable/download"
-                  android:contentDescription="TODO"/>
-
-        <ImageView android:id="@+id/kuva2"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:keepScreenOn="true"
-                   android:backgroundTint="@color/black_overlay"
-                   android:src="@drawable/download"
-                   android:contentDescription="TODO"/>
-
-        <ImageView android:id="@+id/kuva3"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:keepScreenOn="true"
-                   android:backgroundTint="@color/black_overlay"
-                   android:src="@drawable/download"
-                   android:contentDescription="TODO"/>
+                 android:layout_height="match_parent"
+                 android:inAnimation="@android:anim/fade_in"
+                 android:outAnimation="@android:anim/fade_out">
     </ViewFlipper>
 
 

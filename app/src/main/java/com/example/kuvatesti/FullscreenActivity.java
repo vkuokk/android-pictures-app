@@ -3,6 +3,8 @@ package com.example.kuvatesti;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.appcompat.app.ActionBar;
@@ -19,6 +21,7 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -42,7 +45,9 @@ public class FullscreenActivity extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
 
-    private ArrayList<String> all_pics;
+    private int pic_iterator;
+    private LinkedList<ImageView> views = new LinkedList<>();
+    private LinkedList<String> all_pics;
 
     private ViewFlipper viewFlipper;
     RelativeLayout layoutti;
@@ -119,60 +124,38 @@ public class FullscreenActivity extends AppCompatActivity {
             requestStoragePermission();
         }
 
-        // Set up the user interaction to manually show or hide the system UI.
-        //mContentView.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        toggle();
-        //    }
-        //});
-
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-
-       ImageLoader loadj = new ImageLoader();
-       all_pics = loadj.getAllShownImagesPath(this);
-
-       ImageView imageView = findViewById(R.id.kuva1);
-       Glide.with(this)
-               .load("https://www.tutorialspoint.com/images/tp-logo-diamond.png")
-               .into(imageView);
-        ImageView imageView2 = findViewById(R.id.kuva2);
-        Glide.with(this)
-                .load("https://www.tutorialspoint.com/images/tp-logo-diamond.png")
-                .into(imageView);
-        ImageView imageView3 = findViewById(R.id.kuva3);
-        Glide.with(this)
-                .load("https://www.tutorialspoint.com/images/tp-logo-diamond.png")
-                .into(imageView);
-       //load_image();
-        // Käsittelijän lisäystä pyyhkäisyihin
+        ImageLoader loadj = new ImageLoader();
+        all_pics = loadj.getAllShownImagesPath(this);
         layoutti = findViewById(R.id.freimi);
 
         viewFlipper = findViewById(R.id.simpleFlipperi);
+
+        for( int i = 0; i<all_pics.size(); i++){
+            setFlipperImage(all_pics.get(i));
+        }
+
         layoutti.setOnTouchListener(new OnSwipeTouchListener(FullscreenActivity.this) {
+            // TODO: animaation lisäys
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
                 viewFlipper.showNext();
-                Toast.makeText(FullscreenActivity.this, "Pyyhkäisy vasemmalle", Toast.LENGTH_SHORT);
+                //Toast.makeText(FullscreenActivity.this, "Pyyhkäisy vasemmalle", Toast.LENGTH_SHORT);
             }
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
                 viewFlipper.showPrevious();
-                Toast.makeText(FullscreenActivity.this, "Pyyhkäisy oikealle", Toast.LENGTH_SHORT);
+                //Toast.makeText(FullscreenActivity.this, "Pyyhkäisy oikealle", Toast.LENGTH_SHORT);
             }
         });
 
-        hideSystemUI();
     }
 
-    private void hideSystemUI() {
-
+    private void setFlipperImage(String path) {
+        ImageView image = new ImageView(getApplicationContext());
+        Glide.with(this).load(path).into(image);
+        viewFlipper.addView(image);
     }
 
     private void requestStoragePermission(){
@@ -183,6 +166,11 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        hide();
+        super.onConfigurationChanged(newConfig);
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
