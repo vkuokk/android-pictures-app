@@ -172,7 +172,7 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void hideSystemUI() {
-       
+
     }
 
     private void requestStoragePermission(){
