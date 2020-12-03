@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
 import java.util.ArrayList;
 
@@ -128,12 +131,16 @@ public class FullscreenActivity extends AppCompatActivity implements OnClickList
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
        ImageLoader loadj = new ImageLoader();
        all_pics = loadj.getAllShownImagesPath(this);
 
-       load_image();
+       ImageView imageView = findViewById(R.id.fullscreen_content);
+       Glide.with(this)
+               .load("https://www.tutorialspoint.com/images/tp-logo-diamond.png")
+               .into(imageView);
+       //load_image();
     }
 
     private void requestStoragePermission(){
