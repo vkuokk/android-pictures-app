@@ -9,6 +9,7 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+
     <TextView android:id="@+id/fullscreen_content"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -19,6 +20,27 @@
               android:gravity="center"
               android:text="@string/dummy_content"/>
 
+    <Button
+            android:id="@+id/previous_btn"
+            android:layout_width="124dip"
+            android:layout_height="wrap_content"
+            android:text="Previous"
+    />
+
+    <Button
+            android:id="@+id/next_btn"
+            android:layout_width="124dip"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/previous_btn"
+            android:text="Next"
+    />
+
+    <ImageView
+            android:id="@+id/myimage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/previous_btn"
+    />
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout android:layout_width="match_parent"
