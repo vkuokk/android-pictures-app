@@ -128,6 +128,11 @@ public class FullscreenActivity extends AppCompatActivity {
         all_pics = loadj.getAllShownImagesPath(this);
         layoutti = findViewById(R.id.freimi);
 
+        //TODO: https://developer.android.com/training/animation/screen-slide
+        // viewFlipper tästä ja activity_fullscreen:istä -> viewPager
+        // samalla OnSwipeTouchListener on turha, koska "swaippauksen" käsittely tulee
+        // viewPagerissa mukana.
+
         viewFlipper = findViewById(R.id.simpleFlipperi);
 
         for( int i = 0; i<all_pics.size(); i++){
