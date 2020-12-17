@@ -23,11 +23,16 @@ public class ImageLoader {
         String absolutePathOfImage = null;
         uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
+
+        // ALKUP: toimmii
         String[] projection = { MediaStore.MediaColumns.DATA,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME };
 
+        //String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.ImageColumns.DATE_TAKEN};
+        String order = MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC";
+
         cursor = activity.getContentResolver().query(uri, projection, null,
-                null, null);
+                null, order);
 
         column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         column_index_folder_name = cursor

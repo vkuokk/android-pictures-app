@@ -119,7 +119,7 @@ public class FullscreenActivity extends AppCompatActivity {
         mContentView = findViewById(R.id.simpleFlipperi);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this,"oikeus on jo", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"oikeus on jo", Toast.LENGTH_SHORT).show();
         } else {
             requestStoragePermission();
         }
